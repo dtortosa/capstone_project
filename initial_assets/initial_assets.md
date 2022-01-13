@@ -4,8 +4,8 @@ I have performed a preliminary processing of the data and analyses for my capsto
 
 ## First asset
 
-![Height density plot](/results/prelim_results/height_density_plot.jpeg)
+![](/results/prelim_results/height_density_plot.jpeg)
 
 ## Second asset
 
-![P-values density plot](/results/prelim_results/signi_results_density_plot.jpeg)
+![](/results/prelim_results/signi_results_density_plot.jpeg)
