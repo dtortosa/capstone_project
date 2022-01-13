@@ -1,0 +1,1 @@
+# Assets generated during the preliminary analyses
