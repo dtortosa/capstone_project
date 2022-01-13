@@ -117,6 +117,7 @@ height_data[which(is.na(height_data$users_value_height_clean)),]
 #see the distribution of the data
 summary(height_data$users_value_height_clean)
 plot(density(na.omit(height_data$users_value_height_clean)))
+dev.off()
 
 #remove outlier, height of 64 cm does not sound right
 height_data = height_data[which(height_data$users_value_height_clean != min(na.omit(height_data$users_value_height_clean))),]
