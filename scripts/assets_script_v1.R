@@ -695,7 +695,7 @@ write.table(results_geno_pheno, file=gzfile(paste("results/prelim_results/prelim
 ################# MANHATAN PLOT #####################
 #####################################################
 
-#We are not going to run this for now, too much time.
+#We are not going to run this for now, given it is not extremely necessary and require considerable computation time.
 
 ##get the position of each SNP
 if(FALSE){ #run only one time
@@ -794,17 +794,14 @@ if(FALSE){ #run only one time
 
     #save
     write.table(chromo, file=gzfile(paste("data/geno_merged/chromo_snps.txt.gz", sep="")), col.names=TRUE, row.names=FALSE, sep="\t")
+
+	#load the SNP positions
+	chromo = as.data.frame(fread("data/geno_merged/chromo_snps.txt.gz", sep="\t", header=TRUE))
+	
+	#merge by rs_number
+	final_results = merge(chromo, results_geno_pheno, by="rs_number", all.x=FALSE, all.y=TRUE)
+		#we maintain all the rs_numbers from the genotype data. This is what we need, we discard those SNPs with position but not result
+	
+	#check
+	!FALSE %in% c(final_results$rs_number == final_results$selected_rs)
 }
-
-#load the SNP positions
-chromo = as.data.frame(fread("data/geno_merged/chromo_snps.txt.gz", sep="\t", header=TRUE))
-
-#merge by rs_number
-final_results = merge(chromo, results_geno_pheno, by="rs_number", all.x=FALSE, all.y=TRUE)
-	#we maintain all the rs_numbers from the genotype data. This is what we need, we discard those SNPs with position but not result
-
-#check
-!FALSE %in% c(final_results$rs_number == final_results$selected_rs)
-
-
-###CHECK THE BINDING OF THE ALL GENOTYPES, NUMBER ROWS, DUPLICATED RS.... AND DECIDE THE MANHATAN PLOT, BUT I DO NOT THINK SO
