@@ -4,6 +4,6 @@ I have performed a preliminary processing of the data and analyses for my capsto
 
 ## First asset
 
-![Height density ploy](results/prelim_results/height_density_plot.jpeg)
+![Height density plot](/results/prelim_results/height_density_plot.jpeg)
 
 ## Second asset
