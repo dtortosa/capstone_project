@@ -21,7 +21,7 @@ I have performed a preliminary processing and analysis of the data for my capsto
 - I got a file with hundreds of thousands of genetic variants (single nucleotide polymorphisms or SNPs) for each user. I merged the genetic variants across all users into one single data frame. This included 614,518 genetic variants for 486 users. Then, I selected the height data of these individuals with 23andMe genotypes.
 
 
-## Genotype-phenotype association
+## Genotype-height association
 
 - For each individual, I obtained a height value and the genotype of hundred of thousands of variants. I run linear models in order to predict height as a function of one genetic variant each time across the panel of 486 users. Then, I compared the linear model including the genetic variant with a null model without the variant, using a likelihood ratio test to calculate a p-value. Therefore, I obtained a p-value for the association between each genetic variant and height.
 
