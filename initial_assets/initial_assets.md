@@ -14,7 +14,7 @@ I have performed a preliminary analysis for my capstone project. The whole scrip
 ![](/results/prelim_results/height_density_plot.jpeg)
 
 
-## Genotype data and association with height
+## Genotype data and associations with height
 
 - For the genotype data, I also used the API of openSNP. I selected those users for which I got height data in the previous step. Then, I made an additional filter, selecting only those users with genotype data coming from 23andMe. Again, this was done to have more uniform data, but in the final analyses I will make a script flexible enough to handle genotype data from different genetic-testing companies.
 
