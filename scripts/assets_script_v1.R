@@ -550,23 +550,32 @@ geno_additive_pheno = function(selected_row, response){
 		#from the cleaned genotype variable, get all the unique genotypes
 		unique_genotypes = as.character(unique(data_model$geno_values))
 
-		#from there, the alleles
+		#from there, get the two alleles
 		first_set_alleles = sapply(strsplit(unique_genotypes, split=""), "[", 1)
 		second_set_alleles = sapply(strsplit(unique_genotypes, split=""), "[", 2)
 		unique_alleles = unique(na.omit(c(first_set_alleles, second_set_alleles)))
 
+		#calculate the number of individuals with each allele
 		allele_count_1 = length(which(grepl(unique_alleles[1], data_model$geno_values)))
 		allele_count_2 = length(which(grepl(unique_alleles[2], data_model$geno_values)))
 
+		#define the minor (less frequent) and major (more frequent) alleles
 		minor_allele = ifelse(allele_count_1 < allele_count_2, unique_alleles[1], unique_alleles[2])
 		major_allele = unique_alleles[which(!unique_alleles %in% minor_allele)]
 
-		data_model$geno_additive = NA
-
+		#extract the position of each type of genotype, minor and major homozygote and heterzygote
 		index_hetero = which(grepl(paste(minor_allele, major_allele, sep=""), data_model$geno_values) | grepl(paste(major_allele, minor_allele, sep=""), data_model$geno_values))
 		index_homo_minor = which(grepl(paste(minor_allele, minor_allele, sep=""), data_model$geno_values))
 		index_homo_major = which(grepl(paste(major_allele, major_allele, sep=""), data_model$geno_values))
+			#IMPORTANT:	
+				#CHECK WARNING:
+					#1: In grepl(paste(minor_allele, major_allele, sep = ""),  ... :
+					#  argument 'pattern' has length > 1 and only the first element will be used
 
+		#open an empty variable for the new additive genotype
+		data_model$geno_additive = NA
+
+		#fill the new variable counting the number of copies of the minor allele per genotype
 		if(length(index_hetero)>0){
 			data_model[index_hetero,]$geno_additive = 1
 			check_1 = !FALSE %in% c(unique(data_model[which(data_model$geno_additive == 1),]$geno_values) %in% c(paste(major_allele, minor_allele, sep=""), paste(minor_allele, major_allele, sep="")))
@@ -586,8 +595,8 @@ geno_additive_pheno = function(selected_row, response){
 			check_3=NA
 		}
 
+		#remove NAs for the new variable and convert to factor
 		data_model = data_model[which(!is.na(data_model$geno_additive)),]
-
 		data_model$geno_additive = as.factor(data_model$geno_additive)
 
 		#count the number of individuals with each genotype
