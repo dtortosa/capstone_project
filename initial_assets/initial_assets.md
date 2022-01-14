@@ -1,13 +1,19 @@
 # Assets generated during the preliminary analyses
 
-I have performed a preliminary processing of the data and analyses for my capstone project. The whole script used for that can be found [here](https://github.com/dtortosa/capstone_project/blob/f4b446cda1417e4c871ad62baf4865bedb6ced77/scripts/assets_script_v1.R).
+I have performed a preliminary processing and analysis of the data for my capstone project. The whole script used for that can be found [here](https://github.com/dtortosa/capstone_project/blob/f4b446cda1417e4c871ad62baf4865bedb6ced77/scripts/assets_script_v1.R).
 
 
-## First asset
+## Steps followed to obtain the two assets
 
-Density plot showing the density distribution of height of openSNP users for which I could get genotype data from the API. Height shows a distribution resembling a normal distribution. It ranges from 142.24 to 203.20 cm with a median around 170.18 cm. Only one case is above 200 cm.
+1. **Height data**
+	
+- I obtained the available data for the variable "Height" in openSNP using its API. I saved the height and ID of each user. 
 
-![](/results/prelim_results/height_density_plot.jpeg)
+- Given that the height was in different units and formats, I select one format just for the preliminary analysis. I selected height data in feet and inches, which was more uniform. Then, I converted the values to cm and obtain the distribution of this trait.
+
+- Density plot showing the density distribution of height of openSNP users for which I could get genotype data from the API. Height shows a distribution resembling a normal distribution. It ranges from 142.24 to 203.20 cm with a median around 170.18 cm. Only one case is above 200 cm.
+
+- ![Density](/results/prelim_results/height_density_plot.jpeg)
 
 
 ## Second asset
