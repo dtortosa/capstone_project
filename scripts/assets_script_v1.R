@@ -359,7 +359,7 @@ list_data_frames_geno_files = list_data_frames_geno_files[which(second_col_names
 str(list_data_frames_geno_files)
 
 
-##merge all the data.frame in the list using the V1 or rs_number
+### merge all the data.frame in the list using the V1 or rs_number ###
 
 #open a folder to save
 system("cd data/; rm -rf geno_merged; mkdir geno_merged")
@@ -493,10 +493,11 @@ fwrite(geno_data_final, file=gzfile(paste("data/geno_merged/geno_data_final.txt.
 
 
 
-#############################################################################################
-####################### PREPARE HEIGHT DATA TO BE MODELED WITH GENOTYPE #####################
-#############################################################################################
+#####################################################################
+####################### GENE-HEIGHT ASSOCIATION #####################
+#####################################################################
 
+##prepare height data to be modeled with genotype
 #extract height data for those individuals included in the final genotype data
 col_names_users_raw = colnames(geno_data_final)[which(!colnames(geno_data_final) %in% c("rs_number", "chr"))]
 	#get the columns names with all users ID, except the two first, i.e., rs_number and chr
@@ -511,11 +512,6 @@ height_data_users_geno = height_data_users_geno[match(col_names_users, height_da
 #check order
 summary(sapply(strsplit(colnames(geno_data_final)[which(!colnames(geno_data_final) %in% c("rs_number", "chr"))], split="_geno"), "[", 1) == height_data_users_geno$users_ids_height)
 
-
-
-#####################################################################
-####################### GENE-HEIGHT ASSOCIATION #####################
-#####################################################################
 
 ##write function to model the association between each SNP and height
 #for debugging: selected_row=geno_data_final[1,]; response=height_data_users_geno[, c("users_ids_height", "users_value_height_clean")]
@@ -641,7 +637,7 @@ geno_additive_pheno = function(selected_row, response){
 
 #check that the variable used to separate rows in geno_data_final (rs_number) has no duplicates
 length(which(duplicated(geno_data_final$rs_number))) == 0
-	#IMPORTANT: WE HAVE RS NUMBERS DUPLICATED
+	#IMPORTANT: We have duplicates in the rs_number, something to CHECK.
 
 #remove duplicates
 geno_data_final = geno_data_final[which(!duplicated(geno_data_final$rs_number)),]
@@ -652,8 +648,9 @@ geno_data_final = geno_data_final[which(!is.na(geno_data_final$chr) & geno_data_
 
 #remove snps with "i" instead of a rs number.
 geno_data_final = geno_data_final[which(!grepl("i", geno_data_final$rs_number)),]
-	#I have detected that some of these SNPs have only 1 allele! Only 13280
-	#IMPORTANT TO CHECK
+	#IMPORTANT
+		#I have detected that some of these SNPs have only 1 allele! Only 13280.
+		#CHECK
 
 #extract the height data 
 response_data = height_data_users_geno[, c("users_ids_height", "users_value_height_clean")]
@@ -675,10 +672,7 @@ nrow(results_geno_pheno) == nrow(geno_data_final) #we have all the rows
 all(is.na(results_geno_pheno[which(results_geno_pheno$min_geno_count<10 | is.na(results_geno_pheno$min_geno_count) | results_geno_pheno$number_genotypes < 2),]$p_val)) #all cases without min_geno_count, min count lower than 10 or with less than 2 genotypes
 !FALSE %in% c(results_geno_pheno$selected_rs == results_geno_pheno$rs_number)
 
-#see the distribution of the p_values
-plot(density())
-
-#plot
+#see the distribution of the significant p_values
 signi_results_to_plot = na.omit(results_geno_pheno[which(results_geno_pheno$p_value<0.05),]$p_value)
 jpeg("/media/dftortosa/Windows/Users/dftor/Documents/diego_docs/industry/data_incubator/capstone_project/results/prelim_results/signi_results_density_plot.jpeg", width = 880, height = 880)
 plot(density(signi_results_to_plot), xlab=paste("P-values (n = ", length(signi_results_to_plot), ")", sep=""), ylab="Frequency", main="P-values of significant height-genes associations", cex.lab=1.5, cex.main=1.5) 
