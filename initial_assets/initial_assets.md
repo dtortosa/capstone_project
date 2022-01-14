@@ -1,6 +1,6 @@
 # Assets generated during the preliminary analyses
 
-I have performed a preliminary analysis for my capstone project. The whole script used for that can be found [here](https://github.com/dtortosa/capstone_project/blob/f4b446cda1417e4c871ad62baf4865bedb6ced77/scripts/assets_script_v1.R).
+I have performed a preliminary analysis for my capstone project. The whole script used for that can be found [here](/scripts/assets_script_v1.R).
 
 
 ## Height data
