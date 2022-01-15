@@ -476,6 +476,8 @@ head(geno_data)
 chromo_numbers = fread(geno_files_paths[1], sep="\t", header=TRUE, colClasses=c(NA, NA, "NULL", "NULL"))
 colnames(chromo_numbers) = c("rs_number", "chr")
 	#if some SNPs are not present here, no  problem because they have to be removed anyways
+	#IMPORTANT:
+		#I have detected some errors in the chromosome names for sexual chromosomes, for example rs306934 is shown as X, but according to ncbi is in the Y chromosome.
 
 #add the chromosome numbers
 geno_data_final = merge(chromo_numbers, geno_data, by="rs_number", all=TRUE)
@@ -682,10 +684,19 @@ nrow(results_geno_pheno) == nrow(geno_data_final) #we have all the rows
 all(is.na(results_geno_pheno[which(results_geno_pheno$min_geno_count<10 | is.na(results_geno_pheno$min_geno_count) | results_geno_pheno$number_genotypes < 2),]$p_val)) #all cases without min_geno_count, min count lower than 10 or with less than 2 genotypes
 !FALSE %in% c(results_geno_pheno$selected_rs == results_geno_pheno$rs_number)
 
+#see the most significant associations
+nominal_significant = results_geno_pheno[which(results_geno_pheno$p_value<0.05),]
+head(nominal_significant[order(nominal_significant$p_value, decreasing=FALSE),], 30)
+	#IMPORTANT: 
+		#There are some FALSE for check_3.
+		#Maybe because some SNPs are incomplete and only have one of the two alleles.
+		#Only 13 cases within the significant SNPs, not urgent for the preliminary analysis. Note that I have already applied filters of sample size, so the rest of SNPs with TRUE for the checks and included in the models had enough number of valid genotypes.
+			#For example, rs75953429, which is analyzed three times. The same p-value is obtained the three times, but it should not be repeated as we only want each rs_number analyzed one time.
+
 #see the distribution of the significant p_values
-signi_results_to_plot = na.omit(results_geno_pheno[which(results_geno_pheno$p_value<0.05),]$p_value)
+significant_p_values = na.omit(nominal_significant$p_value)
 jpeg("/media/dftortosa/Windows/Users/dftor/Documents/diego_docs/industry/data_incubator/capstone_project/results/prelim_results/signi_results_density_plot.jpeg", width = 880, height = 880)
-plot(density(signi_results_to_plot), xlab=paste("P-values (n = ", length(signi_results_to_plot), ")", sep=""), ylab="Frequency", main="P-values of significant height-genes associations", cex.lab=1.5, cex.main=1.5) 
+plot(density(significant_p_values), xlab=paste("P-values (n = ", length(significant_p_values), ")", sep=""), ylab="Frequency", main="P-values of significant height-genes associations", cex.lab=1.5, cex.main=1.5) 
 dev.off()
 
 #save
