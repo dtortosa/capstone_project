@@ -5,7 +5,7 @@ I have performed a preliminary analysis for my capstone project. The whole scrip
 
 ## Height data
 	
-- I obtained the available data for the variable "Height" in openSNP using its API. I saved the height and ID of each user. 
+- I obtained the available data for the variable "Height" in openSNP using its [API](https://github.com/openSNP/snpr/wiki/JSON-API). I saved the height and ID of each user. 
 
 - Given that the height was in different units and formats, I selected one format just for the preliminary analysis. I selected height data in feet, which was more uniform. In the final analyses, I will process all types of height data. 
 
@@ -16,7 +16,7 @@ I have performed a preliminary analysis for my capstone project. The whole scrip
 
 ## Genotype data and associations with height
 
-- For the genotype data, I also used the API of openSNP. I selected those users for which I got height data in the previous step. Then, I made an additional filter, selecting only those users with genotype data coming from 23andMe. Again, this was done to have more uniform data, but in the final analyses I will make a script flexible enough to handle genotype data from different genetic-testing companies.
+- For the genotype data, I also used the [API](https://github.com/openSNP/snpr/wiki/JSON-API) of openSNP. I selected those users for which I got height data in the previous step. Then, I made an additional filter, selecting only those users with genotype data coming from 23andMe. Again, this was done to have more uniform data, but in the final analyses I will make a script flexible enough to handle genotype data from different genetic-testing companies.
 
 - I got a file with hundreds of thousands of genetic variants (single nucleotide polymorphisms or SNPs) for each user. I merged the genetic variants across all users into one single data frame. This included 614,518 genetic variants for 486 users. Then, I selected the height data of these individuals with 23andMe genotype data. In summary, I got height and the genotype of hundred of thousands of variants for each individual. 
 
