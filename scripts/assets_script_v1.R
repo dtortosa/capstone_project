@@ -628,6 +628,7 @@ geno_additive_pheno = function(selected_row, response){
 		model_2 = glm(users_value_height_clean ~ 1, data=data_model, family=gaussian)
 			#IMPORTANT: in the future we will add sex as a control variable
 				#you can use the presence of Y in the chromosome column of geno_data_final
+				#but note that some Y/X genetic variants could be lost during the merging of the two big genotype datasets, which only maintains rs_numbers included in both datasets, so you should probably do it before that big merging.
 
        	#extract the pvals                
        	p_value = anova(model_1, model_2, test="Chi")$"Pr(>Chi)"[2]
