@@ -22,6 +22,6 @@ I have performed a preliminary analysis for my capstone project. The whole scrip
 
 - Using this data, I tested the association between height and genetic variants. I run linear models in order to predict height as a function of one genetic variant each time. Then, I compared this model with a null model without the variant, using a likelihood ratio test to calculate a p-value. Therefore, I obtained a p-value for the association between each genetic variant and height.
 
-- I then selected those genotype-height associations with a p-value lower than 0.05, totaling to 9134. The plot below shows the presence of both marginally significant and more significant p-values, which will be all used for the proposed approach. These results support the potential of this dataset to model height as a function of multiple gene variants and apply novel approaches to develop polygenic scores.
+- I then selected those genotype-height associations with a p-value lower than 0.05, totaling to 9134. The plot below shows the presence of both marginally significant and more significant p-values, which will be all used for the proposed approach. These results support the potential of this dataset to model height as a function of multiple gene variants and develop novel approaches for improving the genetic prediction of human traits.
 
 ![](/results/prelim_results/signi_results_density_plot.jpeg)
