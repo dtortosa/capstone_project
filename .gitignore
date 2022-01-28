@@ -1,4 +1,13 @@
 *.gz
+*.png
+*.jpeg
+*.jpg
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
 
 /interview/info_interview.md
 /info_responses
