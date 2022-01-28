@@ -1,4 +1,4 @@
 *.gz
 
-
+/interview/info_interview.md
 /info_responses
