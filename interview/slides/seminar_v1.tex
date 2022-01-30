@@ -80,13 +80,13 @@
 
 %%%%Title page
 %%title 
-\title[]{\textbf{Improving genetic prediction for consumers}}
+\title[]{\textbf{Improving genetic prediction for genetic-testing consumers}}
 
 %set space
 \vspace{-0.3cm}
 
 %%author
-\author[Diego F. Salazar Tortosa (University of Arizona)]{\inst{}\\[1ex] {\small Diego F. Salazar-Tortosa\inst{}}} 
+\author[Diego F. Salazar Tortosa (University of Arizona)]{\inst{}\\[1ex] {\LARGE \textbf{Diego F. Salazar-Tortosa}\inst{}}} 
     %Separate lines for indicating the supervisor: Seen in "https://tex.stackexchange.com/questions/26833/supervisor-field-on-the-page-of-the-title-with-beamer". 
     %alternative
         %\author[]{Diego F. Salazar-Tortosa} %los corchetes es para el texto que queda en la parte izquierda inferior negra. 
@@ -111,7 +111,7 @@
 
     %University logo
     \begin{center}
-    \includegraphics[width=0.2\paperwidth,height=0.25\paperheight]{figures/ua_stack_rgb_4_0.png} %downloaded from "https://brand.arizona.edu/download/full-color"
+    \includegraphics[width=0.27\paperwidth,height=0.32\paperheight]{figures/ua_stack_rgb_4_0.png} %downloaded from "https://brand.arizona.edu/download/full-color"
     \end{center}
 } 
 
@@ -213,11 +213,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%% TITLE PAGE FOR PREVIOUS WORK  %%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{frame} 
-%    
-%    %add the title page
-%    \titlepage
-%\end{frame}
+\begin{frame} 
+    
+    %add the title page
+    \titlepage
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,7 +225,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %begin frame with title
-\begin{frame}{Improving genetic prediction for consumers}
+\begin{frame}{Improving genetic prediction for genetic-testing consumers}
 
     %begin block without title
     \begin{block}{Relevance of genetics}
@@ -238,8 +238,34 @@
         \end{itemize}
     \end{block} %in case you want showing a block each time: https://tex.stackexchange.com/questions/67264/overlay-of-blocks-in-beamer
 
+    %begin centered figure
+    \begin{figure}
+        \begin{center}
+
+            %add spaces to set the figure in the correct place
+            \vspace*{-0.5cm}
+
+            %add figure
+            \hspace*{1.75cm}\onslide<1>\includegraphics[page=1, trim={0 0 0 0}, clip=true, width=0.7\paperwidth,height=0.5\paperheight]{figures/gene_trait.png}
+            \vspace*{0cm}
+            
+            %add footnote
+            \vspace*{-0.5cm}\hspace*{0.2cm}\scriptsize Schematic representation of gene-trait relationship
+        \end{center}            
+    \end{figure}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% NEW FRAME %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begin frame with title
+\begin{frame}{Improving genetic prediction for genetic-testing consumers}
+
     %begin block without title
-    \begin{block}{openSNP}
+    \begin{block}{openSNP: genetic prediction of height}
 
         %begin list of items
         \begin{itemize}
@@ -248,13 +274,91 @@
             \item{$\approx$10 thousand genetic variants associated with height}
         \end{itemize}
     \end{block} %in case you want showing a block each time: https://tex.stackexchange.com/questions/67264/overlay-of-blocks-in-beamer 
+
+    %begin centered figure
+    \begin{figure}
+        \begin{center}
+
+            %add spaces to set the figure in the correct place
+            \vspace*{-0.5cm}
+
+            %add figure
+            \hspace*{1.75cm}\onslide<1>\includegraphics[page=1, trim={0 0 0 0}, clip=true, width=0.5\paperwidth,height=0.5\paperheight]{figures/height_density_plot.jpeg}
+            \vspace*{0cm}
+            
+            %add footnote
+            \vspace*{-0.5cm}\hspace*{0.2cm}\scriptsize User's height relationship
+        \end{center}            
+    \end{figure}
 \end{frame}
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% NEW FRAME %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begin frame with title
+\begin{frame}{Improving genetic prediction for genetic-testing consumers}
+
+    %begin block without title
+    \begin{block}{Genetic algorithms to predict height}
+
+        %begin list of items
+        \begin{itemize}
+            \item{Genetic algorithms selecting most explanatory variants}
+                \begin{itemize}
+                    \item{Filtering by p-value thresholds}
+                    \item{Considering functional impact on proteins}
+                \end{itemize}
+            \item{Fine tuning of algorithm parameters -> battery of algorithms}
+            \item{Quantify influence of parameters on height prediction}
+        \end{itemize}
+    \end{block} %in case you want showing a block each time: https://tex.stackexchange.com/questions/67264/overlay-of-blocks-in-beamer 
+
+    %begin centered figure
+    \begin{figure}
+        \begin{center}
+
+            %add spaces to set the figure in the correct place
+            \vspace*{-0.5cm}
+
+            %add figure
+            \hspace*{1.75cm}\onslide<1>\includegraphics[page=1, trim={0 0 0 0}, clip=true, width=0.6\paperwidth,height=0.4\paperheight]{figures/gene_trait.png}
+            \vspace*{0cm}
+            
+            %add footnote
+            \vspace*{-0.5cm}\hspace*{0.2cm}\scriptsize Schematic representation of gene-trait relationship
+        \end{center}            
+    \end{figure}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% NEW FRAME %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%begin frame with title
+\begin{frame}{Improving genetic prediction for genetic-testing consumers}
+
+    %begin block without title
+    \begin{block}{Proof of concept}
+
+        %begin list of items
+        \begin{itemize}
+            \item{Improvement of algorithms for genetic prediction}
+            \item{Future test on larger datasets with clinical data}
+            \item{More robust predictions of disease risk for genetic-testing consumers}
+        \end{itemize}
+    \end{block} %in case you want showing a block each time: https://tex.stackexchange.com/questions/67264/overlay-of-blocks-in-beamer
+\end{frame}
 \end{document}
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%% COMMAND TO RUN %%%%%%%%%%%%
+%%%%%%%%%%%%%%% COMMAND TO RUN %%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %pdflatex seminar_v1.tex 
