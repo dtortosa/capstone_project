@@ -128,7 +128,8 @@ summary(height_data$users_value_height_clean)
 #plot
 height_to_plot = na.omit(height_data$users_value_height_clean)
 jpeg("/media/dftortosa/Windows/Users/dftor/Documents/diego_docs/industry/data_incubator/capstone_project/results/prelim_results/height_density_plot.jpeg", width = 880, height = 880)
-plot(density(height_to_plot), xlab=paste("Users height in cm (n = ", length(height_to_plot), ")", sep=""), ylab="Frequency", main="Density plot of height", cex.lab=1.5, cex.main=1.5) 
+par(mar=c(5, 5, 4, 2))
+plot(density(height_to_plot), xlab=paste("Users height in cm (n = ", length(height_to_plot), ")", sep=""), ylab="Frequency", main="Density plot of height", cex.lab=2.5, cex.main=1.5, cex.axis=1.5) 
 	#height between 142 and 200 cm with a mean and median around 170 cm. Only one case is above 200 cm.
 	#close to normal distribution
 dev.off()
