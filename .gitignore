@@ -8,6 +8,7 @@
 *.out
 *.snm
 *.toc
+*.json
 
 /interview/info_interview.md
 /info_responses
