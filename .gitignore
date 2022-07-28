@@ -9,6 +9,7 @@
 *.snm
 *.toc
 *.json
+*.pptx
 
 /interview/info_interview.md
 /info_responses
@@ -18,3 +19,6 @@
 /capstone_requeriments
 /literature
 /scripts/.ipynb_checkpoints/
+/results
+/slides/figures
+/slides/old_versions
