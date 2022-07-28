@@ -1,7 +1,4 @@
-*.gz
-*.png
-*.jpeg
-*.jpg
+
 *.aux
 *.log
 *.nav
