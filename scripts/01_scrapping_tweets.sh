@@ -48,7 +48,7 @@ cd /media/dftortosa/Windows/Users/dftor/Documents/diego_docs/industry/data_incub
 ####################################
 
 #get tweets searching "european central bank"
-cd results/json_files
+cd data/json_files
 snscrape --jsonl --progress --since 1999-1-1 twitter-search "european central bank until:2022-07-17" > search_euro_bank_twitter_1999_1_1.json
 snscrape --jsonl --progress --since 1999-1-1 twitter-hashtag "ecb until:2022-07-17" > hashtag_euro_bank_twitter_1999_1_1.json
 snscrape --jsonl --progress --since 1999-1-1 twitter-search "EU debt crisis until:2022-07-17" > search_eu_debt_crisis_twitter_1999_1_1.json
