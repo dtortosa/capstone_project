@@ -61,6 +61,13 @@ snscrape --jsonl --progress --since 1999-1-1 twitter-search "Greece economy unti
 snscrape --jsonl --progress --since 1999-1-1 twitter-search "Spain economy until:2022-07-17" > search_spain_economy_twitter_1999_1_1.json
 snscrape --jsonl --progress --since 1999-1-1 twitter-search "Cyprus economy until:2022-07-17" > search_cyprus_economy_twitter_1999_1_1.json
 snscrape --jsonl --progress --since 1999-1-1 twitter-search "Slovenia economy until:2022-07-17" > search_slovenia_economy_twitter_1999_1_1.json
+snscrape --jsonl --progress --since 1999-1-1 twitter-search "Germany economy until:2022-07-17" > search_germany_economy_twitter_1999_1_1.json
+
+snscrape --jsonl --progress --since 2003-11-1 twitter-search "Jean-Claude Trichet until:2011-10-31" > search_trichet_twitter.json
+snscrape --jsonl --progress --since 2011-06-24 twitter-search "Mario Draghi until:2019-10-31" > search_draghi_twitter.json
+	#starting when Draghi was finally selected as president.
+snscrape --jsonl --progress --since 2019-09-17 twitter-search "Christine Lagarde until:2022-07-17" > search_lagarde_twitter.json
+	#starting when Lagarde was finally selected as president.
 
 
 cd ../..
