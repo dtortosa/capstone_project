@@ -101,12 +101,4 @@ snscrape --jsonl --progress --since 2019-09-17 twitter-hashtag "Lagarde until:20
 
 
 
-snscrape --jsonl --progress --since 1999-1-1 twitter-search "Federal Reserve until:2022-08-25" > search_fed_twitter_1999_1_1.json
-	#stopped early
 snscrape --jsonl --progress --since 1999-1-1 twitter-hashtag "fed until:2022-08-25" > hashtag_fed_twitter_1999_1_1.json
-snscrape --jsonl --progress --since 1999-1-1 twitter-search "US economy until:2022-08-25" > search_us_economy_twitter_1999_1_1.json
-	#stopped early
-snscrape --jsonl --progress --since 2006-2-1 twitter-search "Ben S. Bernanke until:2014-01-31" > search_bernanke_twitter_1999_1_1.json
-snscrape --jsonl --progress --since 2014-2-1 twitter-search "Janet L. Yellen until:2018-01-31" > search_yellen_twitter_1999_1_1.json
-snscrape --jsonl --progress --since 2018-2-1 twitter-search "Jerome H. Powell until:2022-08-25" > search_powell_twitter_1999_1_1.json
-
