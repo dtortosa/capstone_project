@@ -1,6 +1,6 @@
 # **Improving prediction of EUR/USD exchange rate using Twitter sentiment**
 
-This repository includes analyses about my data science capstone project. The goal of this project is to improve the predictions of EUR/USD exchange rate using Twitter sentiment around these currencies.
+The goal of this project is to improve the predictions of EUR/USD exchange rate using Twitter sentiment around these currencies.
 
 ## Introduction
 
