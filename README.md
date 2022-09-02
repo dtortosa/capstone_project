@@ -16,7 +16,7 @@ All of this supports that the expectations of the economic agents around, not on
 
 #### EUR/USD exchange rate
 
-I have obtained the EUR/USD exchange rate from the webpage of the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html). In particular, I got exchange rate at the end of the day since the launching of the Euro until the end of August 2022. The format was XML, so I loaded the XML file into python creating dictionaries for each date. I then obtained tuples with the date and EUR/USD exchange rate in each dictionary, finally converting to Pandas Data Frame. The exchange rate in each day was selected as the response variable or target of this project. 
+I have obtained the EUR/USD exchange rate from the webpage of the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html). In particular, I got exchange rate at the end of the day since the launching of the Euro (1999) until the end of August 2022. The format was XML, so I loaded the XML file into python creating dictionaries for each date. I then obtained tuples with the date and EUR/USD exchange rate in each dictionary, finally converting to Pandas Data Frame. The exchange rate in each day was selected as the response variable or target of this project. 
 
 This dataset was also used to obtain variables that could predict the exchange rate of a given dat using the values of previous days:
 
@@ -26,9 +26,9 @@ This dataset was also used to obtain variables that could predict the exchange r
 
 The implementation of these steps along with detailed explanations can be found in the first notebook ([`01_data_preparation_eur_pricing.ipynb`](/scripts/01_data_preparation_eur_pricing.ipynb)).
 
-### Twitter sentiment around EUR and USD
+#### Twitter sentiment around EUR and USD
 
-I obtained tweets about the ECB, its presidents in the last years and economy of European Union countries using the Euro. In this way, I attempted to cover the expectations around key aspects for the value of the Euro as explained in the [Introduction](https://github.com/dtortosa/capstone_project#introduction). I also obtained tweets about the Federal Reserve (i.e., the central bank of the US) in order to get the sentiment around the US dollars, given this currency is the direct competitor of the Euro and its value will influence the EUR/USD exchange rate. See the second notebook for further details ([`02a_data_preparation_scrapping_tweets.ipynb`](/scripts/02a_data_preparation_scrapping_tweets.ipynb))
+I obtained tweets about the ECB, its presidents in the last years and economy of European Union countries using the Euro. In this way, I attempted to cover the expectations around key aspects for the value of the Euro as explained in the [Introduction](https://github.com/dtortosa/capstone_project#introduction). I also obtained tweets about the Federal Reserve (i.e., the central bank of the US) in order to get the sentiment around the US dollars, given this currency is the direct competitor of the Euro and its value will influence the EUR/USD exchange rate. This dataset included tweets since 2008 and 2009 for the EUR and USD, respectively. See the second notebook for further details ([`02a_data_preparation_scrapping_tweets.ipynb`](/scripts/02a_data_preparation_scrapping_tweets.ipynb))
 
 I used [SNScrape](https://github.com/JustAnotherArchivist/snscrape) a python program dedicated to download data from social networks like Twitter. Input was obtained in json format and loaded into python as Pandas data frames using a custom function that was parallelized across multiple cores with `multiprocessing` in order to speed up the loading of this data, which totals to **13 GB**. Then, I processed the tweets by removing duplicates (i.e., the exact same tweet found in different searches) and tweets in languages other than English, leading to a total of **3.6 millions of tweets**.
 
@@ -38,5 +38,33 @@ I performed additional operations on this data in order to obtain metrics summar
 
 More details and the implementation of these steps can found in the third ([`02b_data_preparation_twitter_sentiment_eur.ipynb`](/scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)) and fourth notebooks ([`02c_data_preparation_twitter_sentiment_usd.ipynb`](/scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)) for EUR and USD sentiment, respectively.
 
+### Modeling
+
+The EUR/USD exchange ratio, the EUR predictors and the Twitter sentiment predictors were all merged into one single dataset per date, including complete information for all the variables over the past **9 years**. I used this dataset to model the EUR/USD exchange rate of a given date as a function of the previous EUR pricing and twitter sentiment. 
+
+#### Selection of the regressor
+
+Initially, I run multiple regressors that are recommend for this type of regression problem [Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html). I used cross validation by randomly splitting the data in multiple train-test sets with ShuffleSplit. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing predictos and models with only Twitter sentiment data. This repeated across multiple regressors:
+
+- Lasso
+- Elastic-Net
+- Ridge
+- Supporting Vector Machines linear and non-linear
+- Random Forest
+- Extra Trees 
+- Gradient Boost
+- Voting Regressor
+
+All these regressors were run with default parameters being Extra Trees the one showing the highest R<sup>2</sup> in the test set. Therefore, this regressor was used in subsequent analyses.
+
+I performed then a random grid search to find the best combination of hyperparameters. This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were tested in a different battery of training-test sets and finally applied to the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate was visualized in the whole dataset. This was compared with the simplest model possible which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous.
 
 ## Results
+
+The price of Euro seems to be very stable, it can change from 1.2 to 1.1 but with small steps. This can explains why the simplest model with just the previous EUR pricing without any modeling approach gets the highest predictive power (R<sup>2</sup> = 0.9968). Indeed, the predictor with the highest importance in all cases is the EUR pricing of the previous day.
+
+Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero, supporting the predictive power of Twitter sentiment.
+
+Therefore, it could be relevant the consideration of expectations around a fiat currencies using Twitter, and it could be more relevant if the currency is less stable than the Euro. Note that here I considered Twitter sentiment of the previous 15 days, so it may be the case that rapid changes in the expectations around a less estable currency could be detected in twitter anticipating changes in the value of the currency. This approach could be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more benefitial exchange rates.
+
+ADD PLOTS PREDICTIONS (final 3 models and simplest model) AND PREDICTOR IMPORTANce
