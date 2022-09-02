@@ -26,4 +26,15 @@ This dataset was also used to obtain variables that could predict the exchange r
 
 The implementation of these steps along with detailed explanations can be found in the first notebook ([`01_data_preparation_eur_pricing.ipynb`](/scripts/01_data_preparation_eur_pricing.ipynb)).
 
+### Twitter sentiment around EUR and USD
+
+I obtained tweets about the ECB, its presidents in the last years and economy of European Union countries using the Euro. In this way, I attempted to cover the expectations around key aspects for the value of the Euro as explained in the [Introduction](https://github.com/dtortosa/capstone_project#introduction). I also obtained tweets about the Federal Reserve (i.e., the central bank of the US) in order to get the sentiment around the US dollars, given this currency is the direct competitor of the Euro and its value will influence the EUR/USD exchange rate. See the second notebook for further details ([`02a_data_preparation_scrapping_tweets.ipynb`](/scripts/02a_data_preparation_scrapping_tweets.ipynb))
+
+I used [SNScrape](https://github.com/JustAnotherArchivist/snscrape) a python program dedicated to download data from social networks like Twitter. Input was obtained in json format and loaded into python as Pandas data frames using a custom function that was parallelized across multiple cores in order to speed up the loading of this data, which totals to **13 GB**.
+
+
+
+More details and the implementation of these steps can found in the third notebook ([`02b_data_preparation_twitter_sentiment_eur.ipynb`](/scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)) and fourth notebook ([`02c_data_preparation_twitter_sentiment_usd.ipynb`](/scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)) for EUR and USD sentiment, respectively.
+
+
 ## Results
