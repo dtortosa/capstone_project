@@ -79,8 +79,8 @@ These results support the potential of public Twitter sentiment to capture the e
 
 This approach can be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more beneficial exchange rates. The step-by-step explanations in the different notebooks will make easier the implementation. The different notebooks are ordered following the steps of this project:
 
-1. 1_data_preparation_eur_pricing.ipynb
-2. 02a_data_preparation_scrapping_tweets.ipynb
-3. 02b_data_preparation_twitter_sentiment_eur.ipynb
-4. 02c_data_preparation_twitter_sentiment_usd.ipynb
-5. 03_predicting_exchange_rate.ipynb
+- [1_data_preparation_eur_pricing.ipynb](scripts/1_data_preparation_eur_pricing.ipynb)
+- [02a_data_preparation_scrapping_tweets.ipynb](scripts/02a_data_preparation_scrapping_tweets.ipynb)
+- [02b_data_preparation_twitter_sentiment_eur.ipynb](scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)
+- [02c_data_preparation_twitter_sentiment_usd.ipynb](scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)
+- [03_predicting_exchange_rate.ipynb](scripts/03_predicting_exchange_rate.ipynb)
