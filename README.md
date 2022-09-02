@@ -59,6 +59,8 @@ All these regressors were run with default parameters being Extra Trees the one 
 
 I performed then a random grid search to find the best combination of hyperparameters. This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were tested in a different battery of training-test sets and finally applied to the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate was visualized in the whole dataset. This was compared with the simplest model possible which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous.
 
+All these steps are implemented in the last notebook ([`03_predicting_exchange_rate.ipynb`](/scripts/03_predicting_exchange_rate.ipynb)).
+
 ## Results
 
 The price of Euro seems to be very stable, it can change from 1.2 to 1.1 but with small steps. This can explains why the simplest model with just the previous EUR pricing without any modeling approach gets the highest predictive power (R<sup>2</sup> = 0.9968). Indeed, the predictor with the highest importance in all cases is the EUR pricing of the previous day.
