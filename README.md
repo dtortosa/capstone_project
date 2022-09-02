@@ -10,14 +10,20 @@ The Euro is [fiat money](https://en.wikipedia.org/wiki/Fiat_money), being a fina
 
 All of this supports that the expectations of the economic agents around, not only the actions of the ECB, but also around the economy of European countries, can influence the value of the Euro. I have used Twitter to collect echoes of these previous expectations and improve the predictions of EUR/USD exchange rate. This will be relevant for someone trying to predict fiat currencies in general and in particular the Euro in order to get more beneficial exchanges in the short term. Therefore, the approach I have developed here can be included in existing pipelines dedicated to predict the value of fiat currencies.
 
-## Approach
+## Project
 
 ### Data collection and processing
 
 #### EUR/USD exchange rate
 
-I have obtained the EUR/USD exchange rate from the webpage of the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html).
+I have obtained the EUR/USD exchange rate from the webpage of the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html). In particular, I got exchange rate at the end of the day since the launching of the Euro until the end of August 2022. The format was XML, so I loaded the XML file into python creating dictionaries for each date. I then obtained tuples with the date and EUR/USD exchange rate in each dictionary, finally converting to Pandas Data Frame. The exchange rate in each day was selected as the response variable or target of this project. 
 
-These steps can be found with detailed explanations in [`01_data_preparation_eur_pricing.ipynb`](/scripts/01_data_preparation_eur_pricing.ipynb)
+This dataset was also used to obtain variables that could predict the exchange rate of a given dat using the values of previous days:
+
+- Simply the EUR/USD exchange rate of the previous day.
+- The rolling mean of the exchange in windows including the previous 5, 10, 60 and 120 days. For example, the 5-days moving average of July 10th would consider the exchange rate between July 5th and 9th. For July 11th would consider the exchange rate between July 6th and 10th, and so on...
+- The exponential moving average which gives more weight to recent observations.
+
+The implementation of these steps along with detailed explanations can be found in the first notebook ([`01_data_preparation_eur_pricing.ipynb`](/scripts/01_data_preparation_eur_pricing.ipynb)).
 
 ## Results
