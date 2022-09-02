@@ -69,10 +69,12 @@ The simplest model with just the previous EUR pricing without any modeling appro
   <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_pricing_vs_previous_day.jpg" />
 </p>
 
+In addition, in all machine learning models implemented, the EUR pricing of the previous days was the predictor with the highest importance.
 
-In addition, the predictor with the highest importance in all cases is the EUR pricing of the previous day.
+<p align="center">
+  <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_only_model_features_importance.jpg" />
+</p>
 
-FIGURE
 
 Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero and it is even higher than the EUR-only model when applied to the whole dataset. This supports the predictive power of Twitter sentiment.
 
