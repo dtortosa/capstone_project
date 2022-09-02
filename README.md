@@ -69,14 +69,11 @@ The simplest model with just the previous EUR pricing without any modeling appro
   <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_pricing_vs_previous_day.jpg" />
 </p>
 
-In addition, in all machine learning models implemented, the EUR pricing of the previous days was the predictor with the highest importance.
+Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero and it is even higher than the EUR-only model when applied to the whole dataset. This supports the predictive power of Twitter sentiment.
 
 <p align="center">
-  <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_only_model_features_importance.jpg" />
+  <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_predictions_final_models.jpg" />
 </p>
-
-
-Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero and it is even higher than the EUR-only model when applied to the whole dataset. This supports the predictive power of Twitter sentiment.
 
 Therefore, it could be relevant the consideration of expectations around a fiat currencies using Twitter, and it could be more relevant if the currency is less stable than the Euro. Note that here I considered Twitter sentiment of the previous 15 days, so it may be the case that rapid changes in the expectations around a less estable currency could be detected in twitter anticipating changes in the value of the currency. This approach could be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more benefitial exchange rates.
 
