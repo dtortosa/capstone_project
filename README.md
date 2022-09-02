@@ -1,10 +1,10 @@
 # **Improving prediction of EUR/USD exchange rate using Twitter sentiment**
 
-The goal of this project is to improve the predictions of EUR/USD exchange rate using Twitter sentiment around these currencies.
+The goal of this project is to improve the prediction of EUR/USD exchange rate using Twitter sentiment around these currencies.
 
 ## Introduction
 
-The prediction of currencies is relevant for minimizing losses due to currency fluctuations. In this regard, the Euro is the ([second most important currency worldwide](https://www.statista.com/statistics/247362/global-foreign-exchange-market-turnover-by-currency/)), thus being its prediction relevant for many economic agents. 
+The prediction of currencies is relevant for minimizing losses due to currency fluctuations. In this regard, the Euro is the [second most important currency worldwide](https://www.statista.com/statistics/247362/global-foreign-exchange-market-turnover-by-currency/), thus being its prediction relevant for many economic agents. 
 
 The Euro is [fiat money](https://en.wikipedia.org/wiki/Fiat_money), being a financial asset instead of a real asset. Therefore, it is the financial liability or debt that the European Central Bank (BCE) acquires with the holder of the Euro currency. The value of this financial asset depends on the expected services that this asset can give in the future. What expect Euro holders from the Euro? They hold Euros because this currency is backed by the European Central Bank (ECB) so they expect it will be be more or less stable. If for any reason, the demand of Euros decreases, the ECB can sell its to buy Euros, decreasing the amount of Euros in circulation and stabilizing its value. In addition, European Union countries with their balance can influence in the amount of Euros in the market. If these countries are spending less than they gain (i.e., profits in form of taxes are higher than the Goverments's spending), they will act as a sink of Euros, decreasing even more the amount of Euros in circulation. In contrast, many European countries in deficit would mean more Euros in circulation. 
 
