@@ -49,7 +49,7 @@ Initially, I run multiple regressors that are recommend for this type of regress
 - Lasso
 - Elastic-Net
 - Ridge
-- Supporting Vector Machines linear and non-linear
+- Supporting Vector Machines
 - Random Forest
 - Extra Trees 
 - Gradient Boost
@@ -63,9 +63,15 @@ All these steps are implemented in the last notebook ([`03_predicting_exchange_r
 
 ## Results
 
-The price of Euro seems to be very stable, it can change from 1.2 to 1.1 but with small steps. This can explains why the simplest model with just the previous EUR pricing without any modeling approach gets the highest predictive power (R<sup>2</sup> = 0.9968). Indeed, the predictor with the highest importance in all cases is the EUR pricing of the previous day.
+The price of Euro seems to be very stable, it can change from 1.2 to 1.1 but with small steps. This can explains why t
 
-Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero, supporting the predictive power of Twitter sentiment.
+The simplest model with just the previous EUR pricing without any modeling approach gets the highest predictive power (R<sup>2</sup> = 0.9968). This can be explained by the fact that Euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, there is a great correlation between EUR/USD exchange ratio and the value of the previous day.
+
+![Figure 1](results/figures/eur_pricing_vs_previous_day.png)
+
+Indeed, the predictor with the highest importance in all cases is the EUR pricing of the previous day.
+
+Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero and it is even higher than the EUR-only model when applied to the whole dataset. This supports the predictive power of Twitter sentiment.
 
 Therefore, it could be relevant the consideration of expectations around a fiat currencies using Twitter, and it could be more relevant if the currency is less stable than the Euro. Note that here I considered Twitter sentiment of the previous 15 days, so it may be the case that rapid changes in the expectations around a less estable currency could be detected in twitter anticipating changes in the value of the currency. This approach could be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more benefitial exchange rates.
 
