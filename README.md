@@ -44,16 +44,16 @@ The EUR/USD exchange ratio, the EUR predictors and the Twitter sentiment predict
 
 #### Selection of the regressor
 
-Initially, I run multiple regressors that are recommend for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). I used cross validation by randomly splitting the data in multiple train-test sets with ShuffleSplit. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing predictos and models with only Twitter sentiment data. This repeated across multiple regressors:
+Initially, I run multiple regressors that are recommend for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). As I did not have a priori reasons to think that just a few or many features are important, I tried models recommended in each of these scenarios. I used cross validation by randomly splitting the data in multiple train-test sets with `ShuffleSplit`. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing predictors and with only Twitter sentiment data. This was repeated across multiple regressors:
 
-- Lasso
-- Elastic-Net
-- Ridge
-- Supporting Vector Machines
-- Random Forest
-- Extra Trees 
-- Gradient Boost
-- Voting Regressor
+- [Lasso](https://scikit-learn.org/stable/modules/linear_model.html#lasso)
+- [Elastic-Net](https://scikit-learn.org/stable/modules/linear_model.html#elastic-net)
+- [Ridge](https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression)
+- [Supporting Vector Machines](https://scikit-learn.org/stable/modules/svm.html#regression)
+- [Random Forest](https://scikit-learn.org/stable/modules/ensemble.html#random-forests)
+- [Extra Trees](https://scikit-learn.org/stable/modules/ensemble.html#extremely-randomized-trees)
+- [Gradient Tree Boosting](https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting)
+- [Voting Regressor](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor)
 
 All these regressors were run with default parameters being extra trees regressors the one showing the highest R<sup>2</sup> in the test sets in general. Therefore, this regressor was used in subsequent analyses.
 
