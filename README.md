@@ -44,7 +44,7 @@ The EUR/USD exchange ratio, the EUR predictors and the Twitter sentiment predict
 
 #### Selection of the regressor
 
-Initially, I run multiple regressors that are recommend for this type of regression problem [Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html). I used cross validation by randomly splitting the data in multiple train-test sets with ShuffleSplit. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing predictos and models with only Twitter sentiment data. This repeated across multiple regressors:
+Initially, I run multiple regressors that are recommend for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). I used cross validation by randomly splitting the data in multiple train-test sets with ShuffleSplit. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing predictos and models with only Twitter sentiment data. This repeated across multiple regressors:
 
 - Lasso
 - Elastic-Net
@@ -55,17 +55,15 @@ Initially, I run multiple regressors that are recommend for this type of regress
 - Gradient Boost
 - Voting Regressor
 
-All these regressors were run with default parameters being Extra Trees the one showing the highest R<sup>2</sup> in the test set. Therefore, this regressor was used in subsequent analyses.
+All these regressors were run with default parameters being Extra Trees the one showing the highest R<sup>2</sup> in the test set in general. Therefore, this regressor was used in subsequent analyses.
 
-I performed then a random grid search to find the best combination of hyperparameters. This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were tested in a different battery of training-test sets and finally applied to the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate was visualized in the whole dataset. This was compared with the simplest model possible which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous.
+I performed then a random grid search to find the best combination of hyperparameters. This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were used to fit and predict the EUR/USD exchange rate in the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate was then visualized. This was compared with the simplest model possible which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous.
 
-All these steps are implemented in the last notebook ([`03_predicting_exchange_rate.ipynb`](/scripts/03_predicting_exchange_rate.ipynb)).
+All these modeling steps along with the corresponding results are shown in the last notebook ([`03_predicting_exchange_rate.ipynb`](/scripts/03_predicting_exchange_rate.ipynb)).
 
 ## Results
 
-The price of Euro seems to be very stable, it can change from 1.2 to 1.1 but with small steps. This can explains why t
-
-The simplest model with just the previous EUR pricing without any modeling approach gets the highest predictive power (R<sup>2</sup> = 0.9968). This can be explained by the fact that Euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, there is a great correlation between EUR/USD exchange ratio and the value of the previous day.
+The simplest model with just the previous EUR pricing without any modeling approach (current pricing is the same than the previous day) gets a high predictive power (R<sup>2</sup> = 0.9968). This can be explained by the fact that Euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, there is a great correlation between EUR/USD exchange ratio and the value of the previous day.
 
 ![Figure 1](results/figures/eur_pricing_vs_previous_day.png)
 
