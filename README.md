@@ -44,7 +44,7 @@ The EUR/USD exchange ratio, the EUR predictors and the Twitter sentiment predict
 
 #### Selection of the regressor
 
-Initially, I run multiple regressors that are recommend for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). As I did not have a priori reasons to think that just a few or many features were important, I tried models recommended in each of these scenarios. I used cross validation by randomly splitting the data in multiple train-test sets with `ShuffleSplit`. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing features and with only Twitter sentiment features. This was repeated across multiple regressors:
+Initially, I run multiple regressors that are recommend for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). I used the `scikit-learn` Python library for all models. As I did not have a priori reasons to think that just a few or many features were important, I tried models recommended in each of these scenarios. I used cross validation by randomly splitting the data in multiple train-test sets with `ShuffleSplit`. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing features and with only Twitter sentiment features. This was repeated across multiple regressors:
 
 - [Lasso](https://scikit-learn.org/stable/modules/linear_model.html#lasso)
 - [Elastic-Net](https://scikit-learn.org/stable/modules/linear_model.html#elastic-net)
@@ -57,7 +57,7 @@ Initially, I run multiple regressors that are recommend for this type of regress
 
 All these regressors were run with default parameters being extra trees regressors the ones showing the highest R<sup>2</sup> in the test sets in general. Therefore, this regressor was used in subsequent analyses.
 
-I performed then a random grid search to find the best combination of hyperparameters. This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were used to fit and predict the EUR/USD exchange rate in the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate were then visualized. All these models were compared between them and with the simplest model possible, which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous day.
+I performed then a random grid search (`RandomizedSearchCV`) to find the best combination of 6 hyperparameters (`n_estimators`, `min_samples_split`, `min_samples_leaf`, `max_features`, `max_depth`, `bootstrap`). This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were used to fit and predict the EUR/USD exchange rate in the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate were then visualized. All these models were compared between them and with the simplest model possible, which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous day.
 
 All these modeling steps along with the corresponding results are shown in the last notebook ([`03_predicting_exchange_rate.ipynb`](/scripts/03_predicting_exchange_rate.ipynb)).
 
