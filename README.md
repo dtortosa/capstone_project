@@ -55,7 +55,7 @@ Initially, I run multiple regressors that are recommend for this type of regress
 - Gradient Boost
 - Voting Regressor
 
-All these regressors were run with default parameters being Extra Trees the one showing the highest R<sup>2</sup> in the test set in general. Therefore, this regressor was used in subsequent analyses.
+All these regressors were run with default parameters being extra trees regressors the one showing the highest R<sup>2</sup> in the test sets in general. Therefore, this regressor was used in subsequent analyses.
 
 I performed then a random grid search to find the best combination of hyperparameters. This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were used to fit and predict the EUR/USD exchange rate in the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate was then visualized. This was compared with the simplest model possible which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous.
 
@@ -63,18 +63,24 @@ All these modeling steps along with the corresponding results are shown in the l
 
 ## Results
 
-The simplest model with just the previous EUR pricing and without any modeling approach (i.e., current pricing is the same than the previous day) had a high predictive power (R<sup>2</sup> = 0.9968). This may be explained by the fact that Euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, there is a great correlation between EUR/USD exchange ratio and the value of the previous day.
+The simplest model with just the previous EUR pricing and without any modeling approach (i.e., current pricing is the same than the previous day) had a high predictive power (R<sup>2</sup> = 0.9968). This may be explained by the fact that Euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, the previous pricing is the most important feature in all the models (see the [last notebook](/scripts/03_predicting_exchange_rate.ipynb) for all plots about feature importance) and, as expected, there is a great correlation between EUR/USD exchange rate and the value of the previous day.
 
 <p align="center">
   <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_pricing_vs_previous_day.jpg" />
 </p>
 
-Extra Tree Regression models surpass this, being the full model the one with the highest R<sup>2</sup> in the whole dataset (0.999798). However, when using CV to calculate R<sup>2</sup>, predictive power is a lower in the full model compared to the simplest model (R<sup>2</sup> = 0.996617), although this full model is still above the EUR-only (difference equal or lower than 0.02%). Despite this, it is relevant the fact that, in general, models including Twitter information work better in general than the EUR-only model. In addition, Twitter-only models have an R<sup>2</sup> much above zero and it is even higher than the EUR-only model when applied to the whole dataset. This supports the predictive power of Twitter sentiment.
+When predicting to the test sets, the extra tree regressors showed a very high predictive power having the full model (EUR-pricing + Twitter sentiment) the highest R<sup>2</sup> (R<sup>2</sup> = 0.9966). This suggests that the performance of the Twitter-based models is not caused just by an increase of predictors and overfitting. Note that this predictive power was still below the simplest model. However, the extra tree regressors surpassed the simplest model when fitted to the whole dataset, having again the full model the highest predictive power (R<sup>2</sup> = 0.9993), followed by the Twitter-only model (R<sup>2</sup> = 0.9989) and the EUR-only model (R<sup>2</sup> = 0.9982). It is worth to highlight that adding the Twitter sentiment increased the R<sup>2</sup> in 0.11%, a small increase but still relevant given the already very high predictive power I am using a baseline. In addition, the model considering only the sentiment around EUR and USD in the previous 15 days got a extremely high predictive power.
 
 <p align="center">
   <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_predictions_final_models.jpg" />
 </p>
 
-Therefore, it could be relevant the consideration of expectations around a fiat currencies using Twitter, and it could be more relevant if the currency is less stable than the Euro. Note that here I considered Twitter sentiment of the previous 15 days, so it may be the case that rapid changes in the expectations around a less estable currency could be detected in twitter anticipating changes in the value of the currency. This approach could be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more benefitial exchange rates.
+These results support the potential of public Twitter sentiment to capture the expectations around the Euro and improve the predictions of EUR/USD exchange rate. It could be also useful to improve the prediction of other fiat currencies, maybe even more for those exhibiting higher instability and thus being less influenced by the value of the previous day. Note that here I found an improved prediction using Twitter sentiment of the previous 15 days, so it may be the case that rapid changes in the expectations around a less stable currency could be detected in twitter anticipating short-term changes in the value of the currency. 
 
-ADD PLOTS PREDICTIONS (final 3 models and simplest model) AND PREDICTOR IMPORTANce
+This approach can be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more beneficial exchange rates. The step-by-step explanations in the different notebooks will make easier the implementation. The different notebooks are ordered following the steps of this project:
+
+1. 1_data_preparation_eur_pricing.ipynb
+2. 02a_data_preparation_scrapping_tweets.ipynb
+3. 02b_data_preparation_twitter_sentiment_eur.ipynb
+4. 02c_data_preparation_twitter_sentiment_usd.ipynb
+5. 03_predicting_exchange_rate.ipynb
