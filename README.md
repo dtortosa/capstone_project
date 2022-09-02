@@ -20,9 +20,9 @@ I have obtained the EUR/USD exchange rate from the webpage of the [European Cent
 
 This dataset was also used to obtain features that could predict the exchange rate of a given day using the EUR pricing of previous days:
 
-- EUR/USD exchange rate of the previous day (`shift` method of Pandas DataFrame).
-- Moving average of the exchange rate in windows including the previous 5, 10, 60 and 120 days (`rolling` method of Pandas DataFrame). For example, the 5-days moving average of July 10th would consider the exchange rate between July 5th and 9th. For July 11th, it would consider the exchange rate between July 6th and 10th, and so on...
-- Exponential moving average which gives more weight to recent observations (`ewm` method of Pandas DataFrame).
+- EUR/USD exchange rate of the previous day (`shift` method of Pandas).
+- Moving average of the exchange rate in windows including the previous 5, 10, 60 and 120 days (`rolling` method of Pandas). For example, the 5-days moving average of July 10th would consider the exchange rate between July 5th and 9th. For July 11th, it would consider the exchange rate between July 6th and 10th, and so on...
+- Exponential moving average which gives more weight to recent observations (`ewm` method of Pandas).
 
 The implementation of these steps along with step-by-step explanations can be found in the first notebook ([`01_data_preparation_eur_pricing.ipynb`](/scripts/01_data_preparation_eur_pricing.ipynb)).
 
