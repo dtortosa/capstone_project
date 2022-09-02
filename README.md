@@ -77,10 +77,10 @@ When predicting to the test sets, the extra tree regressors showed a very high p
 
 These results support the potential of public Twitter sentiment to capture the expectations around the Euro and improve the predictions of EUR/USD exchange rate. It could be also useful to improve the prediction of other fiat currencies, maybe even more for those exhibiting higher instability and thus being less influenced by the value of the previous day. Note that here I found an improved prediction using Twitter sentiment of the previous 15 days, so it may be the case that rapid changes in the expectations around a less stable currency could be detected in twitter anticipating short-term changes in the value of the currency. 
 
-This approach can be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more beneficial exchange rates. The step-by-step explanations in the different notebooks will make easier the implementation. The different notebooks are ordered following the steps of this project:
+This approach can be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction performance and increase the probabilities of more beneficial exchange rates. The step-by-step explanations in the different notebooks will make easier the implementation. The different notebooks are ordered following the steps of this project and stored in the `script` folder of this repository:
 
-- [1_data_preparation_eur_pricing.ipynb](scripts/1_data_preparation_eur_pricing.ipynb)
-- [02a_data_preparation_scrapping_tweets.ipynb](scripts/02a_data_preparation_scrapping_tweets.ipynb)
-- [02b_data_preparation_twitter_sentiment_eur.ipynb](scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)
-- [02c_data_preparation_twitter_sentiment_usd.ipynb](scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)
-- [03_predicting_exchange_rate.ipynb](scripts/03_predicting_exchange_rate.ipynb)
+- [`1_data_preparation_eur_pricing.ipynb`](scripts/1_data_preparation_eur_pricing.ipynb)
+- [`02a_data_preparation_scrapping_tweets.ipynb`](scripts/02a_data_preparation_scrapping_tweets.ipynb)
+- [`02b_data_preparation_twitter_sentiment_eur.ipynb`](scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)
+- [`02c_data_preparation_twitter_sentiment_usd.ipynb`](scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)
+- [`03_predicting_exchange_rate.ipynb`](scripts/03_predicting_exchange_rate.ipynb)
