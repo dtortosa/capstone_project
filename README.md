@@ -12,8 +12,12 @@ All of this supports that the expectations of the economic agents around, not on
 
 ## Approach
 
-### Data collection
+### Data collection and processing
 
+#### EUR/USD exchange rate
 
+I have obtained the EUR/USD exchange rate from the webpage of the [European Central Bank](https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-usd.en.html).
+
+These steps can be found with detailed explanations in [`01_data_preparation_eur_pricing.ipynb`](/scripts/01_data_preparation_eur_pricing.ipynb)
 
 ## Results
