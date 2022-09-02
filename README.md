@@ -65,7 +65,7 @@ All these modeling steps along with the corresponding results are shown in the l
 
 The simplest model with just the previous EUR pricing without any modeling approach (current pricing is the same than the previous day) gets a high predictive power (R<sup>2</sup> = 0.9968). This can be explained by the fact that Euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, there is a great correlation between EUR/USD exchange ratio and the value of the previous day.
 
-![Figure 1](results/figures/eur_pricing_vs_previous_day.png)
+![Figure 1](results/figures/eur_pricing_vs_previous_day.jpg)
 
 In addition, the predictor with the highest importance in all cases is the EUR pricing of the previous day.
 
