@@ -55,7 +55,7 @@ Initially, I ran multiple regressors that are recommended for this type of regre
 - [Gradient Tree Boosting](https://scikit-learn.org/stable/modules/ensemble.html#gradient-tree-boosting)
 - [Voting Regressor](https://scikit-learn.org/stable/modules/ensemble.html#voting-regressor)
 
-All these regressors were run with default parameters being extra trees regressors the ones showing the highest R<sup>2</sup> in the test sets in general. Therefore, this regressor was used in subsequent analyses.
+All these regressors were run with default parameters being extra trees regressors, the ones showing the highest R<sup>2</sup> in the test sets in general. Therefore, this regressor was used in subsequent analyses.
 
 #### Optimization of the selected regressor
 
