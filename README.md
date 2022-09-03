@@ -65,7 +65,7 @@ All these modeling steps along with the corresponding results are shown in the l
 
 ## Results
 
-A model assuming that the current pricing is the same as that of the previous day had a high predictive power (R<sup>2</sup> = 0.9968). This may be explained by the fact that euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, the previous pricing is the most important feature in all the models (see the [last notebook](/scripts/03_predicting_exchange_rate.ipynb) for all plots about feature importance; Optimized Models section) and, as expected, there is a clear correlation between EUR/USD exchange rate and the value of the previous day.
+A model assuming that the current pricing is the same as that of the previous day had a high predictive power (R<sup>2</sup> = 0.9968). This may be explained by the fact that euro pricing changes but at a slow pace, being the value of the previous day a very good predictor. Indeed, the previous pricing is the most important feature when included in a machine learning framework (see the [last notebook](/scripts/03_predicting_exchange_rate.ipynb) for all plots about feature importance; Optimized Models section) and, as expected, there is a clear correlation between EUR/USD exchange rate and the value of the previous day.
 
 <p align="center">
   <img src="https://github.com/dtortosa/capstone_project/blob/main/results/figures/eur_pricing_vs_previous_day.jpg" />
