@@ -36,7 +36,7 @@ Each of these tweets was then cleaned (removing URLs, "#", etc...) with a custom
 
 I performed additional operations on this data in order to obtain metrics summarizing the sentiment of all tweets per day. For example, the average sentiment of all tweets of a given day, the median, standard deviation, etc... With the purpose of really testing the predictive power of Twitter sentiment I created a function that calculates the mean, median, variance, sd.... of all tweets of a previous day. In other words, **I will use Twitter sentiment to predict future EUR pricing**. For example the average sentiment for all tweets 2 days ago. I calculated a total of **20 summary statistics** across the 15 previous days to each day. In order words, for each day, I calculated the average sentiment (and the other 19 metrics) during the previous day, then 2 days ago, 3, and so on... Each date was run independently in a different core in order to reduce computation time. Using this approach, I generated a battery of 600 predictors, 300 for the sentiment of tweets about EUR and 300 for tweets about USD. 
 
-More details and the implementation of these steps can found in the third ([`02b_data_preparation_twitter_sentiment_eur.ipynb`](/scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)) and fourth notebooks ([`02c_data_preparation_twitter_sentiment_usd.ipynb`](/scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)) for EUR and USD sentiment, respectively.
+More details and the implementation of these steps can be found in the third ([`02b_data_preparation_twitter_sentiment_eur.ipynb`](/scripts/02b_data_preparation_twitter_sentiment_eur.ipynb)) and fourth notebooks ([`02c_data_preparation_twitter_sentiment_usd.ipynb`](/scripts/02c_data_preparation_twitter_sentiment_usd.ipynb)) for EUR and USD sentiment, respectively.
 
 ### Modeling
 
@@ -44,7 +44,7 @@ The EUR/USD exchange ratio, the EUR predictors and the Twitter sentiment predict
 
 #### Selection of the regressor
 
-Initially, I run multiple regressors that are recommend for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). I used the `scikit-learn` Python library for all models. As I did not have a priori reasons to think that just a few or many features were important, I tried models recommended in each of these scenarios. I used cross validation by randomly splitting the data in multiple train-test sets with `ShuffleSplit`. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing features and with only Twitter sentiment features. This was repeated across multiple regressors:
+Initially, I ran multiple regressors that are recommended for this type of regression problem ([Scikit learn flowchart](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)). I used the `scikit-learn` Python library for all models. As I did not have a priori reasons to think that just a few or many features were important, I tried models recommended in each of these scenarios. I used cross validation by randomly splitting the data in multiple train-test sets with `ShuffleSplit`. Then I used `cross_val_score` to calculate the average R<sup>2</sup> across the test sets. I used models with all predictors, but also models with only EUR-pricing features and with only Twitter sentiment features. This was repeated across multiple regressors:
 
 - [Lasso](https://scikit-learn.org/stable/modules/linear_model.html#lasso)
 - [Elastic-Net](https://scikit-learn.org/stable/modules/linear_model.html#elastic-net)
@@ -57,7 +57,9 @@ Initially, I run multiple regressors that are recommend for this type of regress
 
 All these regressors were run with default parameters being extra trees regressors the ones showing the highest R<sup>2</sup> in the test sets in general. Therefore, this regressor was used in subsequent analyses.
 
-I performed then a random grid search (`RandomizedSearchCV`) to find the best combination of 6 hyperparameters (`n_estimators`, `min_samples_split`, `min_samples_leaf`, `max_features`, `max_depth`, `bootstrap`). This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were used to fit and predict the EUR/USD exchange rate in the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate were then visualized. All these models were compared between them and with the simplest model possible, which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous day.
+#### Optimization of the selected regressor
+
+I then performed a random grid search (`RandomizedSearchCV`) to find the best combination of 6 hyperparameters (`n_estimators`, `min_samples_split`, `min_samples_leaf`, `max_features`, `max_depth`, `bootstrap`). This was done separately for the full model (EUR pricing + Twitter sentiment), EUR-only model and Twitter-only model. The optimized models were used to fit and predict the EUR/USD exchange rate in the whole dataset. Variable importance and observed vs. predicted EUR/USD exchange rate were then visualized. All these models were compared between them and with the simplest model possible, which assumes that the current EUR/USD exchange rate is equal to the exchange rate of the previous day.
 
 All these modeling steps along with the corresponding results are shown in the last notebook ([`03_predicting_exchange_rate.ipynb`](/scripts/03_predicting_exchange_rate.ipynb)).
 
@@ -77,7 +79,7 @@ When predicting in the test sets, the extra tree regressors showed a very high p
 
 These results support the potential of public Twitter sentiment to capture the expectations around the Euro and improve the predictions of EUR/USD exchange rate. It could also be useful to improve the prediction of other fiat currencies, maybe even more useful for those exhibiting higher instability and thus being less influenced by the pricing of the previous day. Note that here I found an improved prediction using Twitter sentiment of the previous 15 days. Therefore, it may be the case that rapid changes in the expectations around a less stable currency could be detected in twitter, anticipating short-term changes in the value of the currency. 
 
-This approach can be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction and increase the probabilities of more beneficial exchange rates. The step-by-step explanations in the all notebooks will make easier the implementation. The different notebooks are ordered following the steps of this project and stored in the `script` folder of this repository:
+This approach can be included in pre-existing pipelines to predict EUR and other fiat currencies in order to improve prediction and increase the probabilities of more beneficial exchange rates. The step-by-step explanations in all the notebooks will make the implementation easier. The different notebooks are ordered following the steps of this project and stored in the `script` folder of this repository:
 
 - [`1_data_preparation_eur_pricing.ipynb`](scripts/1_data_preparation_eur_pricing.ipynb)
 - [`02a_data_preparation_scrapping_tweets.ipynb`](scripts/02a_data_preparation_scrapping_tweets.ipynb)
