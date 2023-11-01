@@ -7,6 +7,7 @@
 *.json
 *.pptx
 
+/capstone_writeup
 /interview/info_interview.md
 /info_responses
 /interview/slides/figures
